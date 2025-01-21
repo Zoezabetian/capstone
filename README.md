@@ -1,6 +1,6 @@
-# bme capstone project - training pipeline
+# immune cell classification capstone project - ML pipeline
 
-This repository contains scripts for processing biological data, converting file formats, and training machine learning models.
+This repository contains scripts for processing biological data, converting file formats, and training machine learning models. I am using these files for my immune cell classification research. 
 
 ## Files
 
@@ -12,12 +12,19 @@ This repository contains scripts for processing biological data, converting file
   - Maps clusters to specific labels.
   - Filters and saves cleaned datasets.
 
-### 2. `my-training.py`
-- **Purpose**: Train machine learning models on biological data.
+### 2. `my-pipeline.py`
+- **Purpose**: Machine learning pipeline for scRNA-seq analysis.
 - **Key Features**:
-  - Implements grid search for hyperparameter tuning.
+  - Classes: Preprocessor, Trainer, Predicter, as well as Pipeline Class
   - Uses PyTorch Lightning and SIMS for model training.
   - Includes validation and evaluation with confusion matrix visualization.
+
+### 3. `predict.ipynb`
+- **Purpose**: Notebook for making predictions on data with best models.
+- **Key Features**:
+  - For immune cell project. 
+  - Predicts with two models.
+  - Shows distribution of predictions.
 
 ### 3. `Rdata-to-h5ad.R`
 - **Purpose**: Process `.RData` files and convert `.h5Seurat` to `.h5ad`.
@@ -25,22 +32,3 @@ This repository contains scripts for processing biological data, converting file
   - Extracts counts, metadata, and gene names from `.RData`.
   - Converts `.h5Seurat` to `.h5ad` format using SeuratDisk.
   - Handles file naming conflicts by appending timestamps.
-
-## Usage
-
-### Preprocessing (`data-clean.py`)
-1. Update file paths in the script to match your dataset locations.
-2. Run the script to normalize, reduce dimensions, and filter the data.
-
-### Training (`my-training.py`)
-1. Set the dataset path and target column in the command-line arguments.
-2. Specify hyperparameter ranges for the grid search.
-3. Run the script to train models and evaluate performance.
-
-### Conversion (`Rdata-to-h5ad.R`)
-1. Replace the placeholder paths with your input and output file paths.
-2. Run the script in R to process `.RData` files and convert `.h5Seurat` to `.h5ad`.
-
-## Requirements
-- Python: `scanpy`, `matplotlib`, `numpy`, `scsims`, `pytorch-lightning`
-- R: `Seurat`, `SeuratDisk`, `Matrix`

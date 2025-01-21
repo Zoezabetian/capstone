@@ -32,7 +32,7 @@ class Preprocessor:
         return self.adata
 
 # trains the model using the processed data and logs progress
-class TrainerClass:
+class Trainer:
     def __init__(self, traindata, valdata, columna):
         self.traindata = traindata
         self.valdata = valdata
@@ -140,13 +140,13 @@ class GenericPipeline:
         for weight_decay in self.weight_decay_values:
             for lr in self.lr_values:
                 print(f"Training with weight_decay={weight_decay}, lr={lr}...")
-                trainer = TrainerClass(traindata, valdata, self.columna)
+                trainer = Trainer(traindata, valdata, self.columna)
                 trainer.train_model(weight_decay, lr)
                 print(f"Completed training for weight_decay={weight_decay}, lr={lr}. Best model saved at: {trainer.get_best_model_path()}")
 
         # generate predictions and evaluate using the best model (example)
         print("Generating predictions...")
-        best_trainer = TrainerClass(traindata, valdata, self.columna)
+        best_trainer = Trainer(traindata, valdata, self.columna)
         best_trainer.train_model(self.weight_decay_values[0], self.lr_values[0])  # just an example to use the first params
         predictor = Predictor(best_trainer.model, valdata, self.columna)
         predictions = predictor.predict()
